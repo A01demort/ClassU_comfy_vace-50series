@@ -35,4 +35,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: a01demort/classu-comfyui-wan2.1_vace_5090v:v1.0.0
+          tags: a01demort/classu-comfyui-wan2.1_vace_5090v:v1.0.1
