@@ -91,6 +91,8 @@ RUN echo '📁 커스텀 노드 및 의존성 설치 시작' && \
     git clone https://github.com/pollockjj/ComfyUI-MultiGPU.git || echo '⚠️ MultiGPU 실패' && \
     git clone https://github.com/Fannovel16/comfyui_controlnet_aux.git || echo '⚠️ controlnet_aux 실패' && \
     git clone https://github.com/chflame163/ComfyUI_LayerStyle.git || echo '⚠️ ComfyUI_LayerStyle 설치 실패' && \
+    git clone https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git && cd ComfyUI-Frame-Interpolation && git checkout a969c01dbccd9e5510641be04eb51fe93f6bfc3d || echo '⚠️ Frame-Interpolation 실패' && cd .. && \
+    git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack.git && cd ComfyUI-Impact-Pack && git checkout 48a814315f500a6f3e87ac4c8446305f8b2ef8f6 || echo '⚠️ Impact-Pack 실패' && cd .. && \
     git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git && cd ComfyUI-WanVideoWrapper && git fetch origin 6eddec54a69d9fac30b0125a3c06656e7c533eca && git checkout 6eddec54a69d9fac30b0125a3c06656e7c533eca || echo '⚠️ ComfyUI-WanVideoWrapper 설치 실패' && \
 
     echo '📦 segment-anything 설치' && \
