@@ -29,8 +29,11 @@ RUN wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz && \
 # ComfyUI 설치
 WORKDIR /workspace
 RUN mkdir -p /workspace && chmod -R 777 /workspace && \
-    chown -R root:root /workspace
-RUN git clone https://github.com/comfyanonymous/ComfyUI.git /workspace/ComfyUI
+    chown -R root:root /workspace && \
+    git clone https://github.com/comfyanonymous/ComfyUI.git /workspace/ComfyUI && \
+    cd /workspace/ComfyUI && \
+    git fetch --tags && \
+    git checkout v0.3.66
 WORKDIR /workspace/ComfyUI
 
 # ✅ 이 파트가 가장 중요 (5090에서) PyTorch (cu128) 먼저 설치
@@ -130,13 +133,26 @@ VOLUME ["/workspace"]
 EXPOSE 8188
 EXPOSE 8888
 
-# 실행 명령어
+
+
+# 실행 명령어(신규)
 CMD bash -c "\
 echo '🌀 A1(AI는 에이원) : https://www.youtube.com/@A01demort' && \
 jupyter lab --ip=0.0.0.0 --port=8888 --allow-root \
 --ServerApp.root_dir=/workspace \
 --ServerApp.token='' --ServerApp.password='' & \
-python -u /workspace/ComfyUI/main.py --listen 0.0.0.0 --port=8188 \
---front-end-version Comfy-Org/ComfyUI_frontend@latest & \
+python -u /workspace/ComfyUI/main.py --listen 0.0.0.0 --port=8188 & \
 /workspace/A1/init_or_check_nodes.sh && \
 wait"
+
+
+# # 실행 명령어
+# CMD bash -c "\
+# echo '🌀 A1(AI는 에이원) : https://www.youtube.com/@A01demort' && \
+# jupyter lab --ip=0.0.0.0 --port=8888 --allow-root \
+# --ServerApp.root_dir=/workspace \
+# --ServerApp.token='' --ServerApp.password='' & \
+# python -u /workspace/ComfyUI/main.py --listen 0.0.0.0 --port=8188 \
+# --front-end-version Comfy-Org/ComfyUI_frontend@latest & \
+# /workspace/A1/init_or_check_nodes.sh && \
+# wait"
